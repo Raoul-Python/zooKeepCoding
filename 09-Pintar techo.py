@@ -1,3 +1,6 @@
+from math import pi
+from math import pow
+
 def  valida(cadena):
     try:
         float(cadena)
@@ -15,46 +18,58 @@ def bucle(cadena, magnitud):
 
     return cadena
 
+def calculaPintura(area):
 
-_BOTE_METROS = 0.01
-_LITRO_METRO = 0.05
+    _BOTE_METROS = 0.01
+    _LITRO_METRO = 0.05
 
-ancho = input("\nIntroduce metros lineales de ANCHO.....: ")
+    boteAComprar = area * _BOTE_METROS
 
-ancho = bucle(ancho, "ANCHO")
+    litrosAComprar = area * _LITRO_METRO
 
+    print("Necesitarás {} litro/s para pintar {} metro/s cuadrados de techo.\n".format(litrosAComprar, area))
 
-largo = input("\nIntroduce metros lineales de LARGO.....: ")
+    if boteAComprar > round(boteAComprar):
+            boteAComprar = round(boteAComprar) + 1
 
-largo = bucle(largo, "LARGO")
+    else:
+            boteAComprar = round(boteAComprar)
 
-"""while not valida(ancho):
-    print("ERROR. Introduce un número válido\n")
-    ancho = input("\nIntroduce metros lineales de ANCHO.....: ")
-
-while not valida(largo):
-    print("ERROR. Introduce un número válido\n")
-    largo = input("\nIntroduce metros lineales de LARGO.....: ")"""
+    print("Debes comprar {} bote/s de pintura\n".format(boteAComprar))
 
 
 
-anchoP = float(ancho)
-largoP = float(largo)
+while True:
+    print("***************** ELIGE UNA OPCIÓN : *************************\n")
+    print("1.- PINTAR UN CUADRADO............:\n")
+    print("2.- PINTAR UN CÍRCULO ............:\n")
+    opcion = input("Opción (1 / 2 / Salir)..: ")
 
-area = anchoP * largoP
+    if opcion == "1":
+        
+        ancho = input("\nIntroduce metros lineales de ANCHO.....: ")
+        ancho = bucle(ancho, "ANCHO")
+        largo = input("\nIntroduce metros lineales de LARGO.....: ")
+        largo = bucle(largo, "LARGO")
 
-boteAComprar = area * _BOTE_METROS
+        anchoP = float(ancho)
+        largoP = float(largo)
 
-litrosAComprar = area * _LITRO_METRO
+        area = anchoP * largoP
+        calculaPintura(area)
+  
+    elif opcion == "2":
 
-print("Necesitarás {} litro/s para pintar {} metro/s cuadrados de techo.\n".format(litrosAComprar, area))
+        #Fórmula Área Círculo ::....Pi R cuadrado ... PiR2
+        radio = input("\nIntroduce el Radio del Círculo...:")
+        radio = bucle(radio, "RADIO")
 
-if boteAComprar > round(boteAComprar):
-    boteAComprar = round(boteAComprar) + 1
+        radioP = float(radio)
 
-else:
-    boteAComprar = round(boteAComprar)
+        areaCirculo = pi*pow(radioP, 2)
+        calculaPintura(areaCirculo)
 
-
-print("Debes comprar {} bote/s de pintura".format(boteAComprar))
-
+    else:
+        print("\nBye, bye....")
+        break
+    
